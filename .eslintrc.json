@@ -1,0 +1,6 @@
+{
+  "extends": "eslint-config-google",
+  "rules": {
+    "require-jsdoc": 0
+  }
+}
