@@ -12,6 +12,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const rooms = [];
 
 app.engine('html', hogan);
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
