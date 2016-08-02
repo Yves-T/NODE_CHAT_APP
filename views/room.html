@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+  <script src="/bower_components/jquery/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var host = location.host;
+    var messages = io.connect(host + '/messages');
+    var roomNum = '{{roomNumber}}';
+    var userName = '{{user.fullname}}';
+    var userPic = '{{user.profilePic}}';
+  </script>
+  <script src="/js/room.js"></script>
+</head>
+<body>
+<div class="container" id="rooms">
+  <div class="well">
+    <h1 class="">Chat App</h1>
+
+    <div class="row">
+      <div class="col-lg-8">
+        <img src="{{user.profilePic}}" class="img-responsive pull-left">
+        <h3 class="userName">
+          &nbsp;{{user.fullname}}
+          <a class="btn btn-default" id="logout" href="/logout">Logout</a>&nbsp;
+          <a class="btn btn-success" href="/chatrooms">More Chatrooms</a>
+        </h3>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="rm-roomname">
+            <h3>Room name:&nbsp;<span class="label label-primary">{{roomName}}</span></h3>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-lg-6">
+
+          <div class="rm-messages">
+            <ul class="messages list-group">
+
+            </ul>
+          </div>
+          <div class="rm-newmessage">
+            <input type="text" class="newmessage form-control" autocomplete="off"
+                   placeholder="Type in your message and press enter !">
+
+          </div>
+        </div>
+
+
+        <div class="col-lg-4">
+          <div class="rm-users">
+            <ul class="users list-group">
+
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

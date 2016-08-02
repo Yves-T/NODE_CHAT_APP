@@ -7,9 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="../public/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/chatRooms.js"></script>
 </head>
 <body>
 <div class="container" id="chatrooms">
@@ -33,9 +34,9 @@
   <div class="row">
     <div class="col col-lg-12">
       <div class="input-group">
-        <input type="text" class="form-control" autocomplete="off">
+        <input type="text" class="form-control newRoom" autocomplete="off">
         <span class="input-group-btn">
-        <button class="btn btn-success" type="button">Create Room</button>
+        <button id="create" class="btn btn-success" type="button">Create Room</button>
    </span>
       </div>
     </div>
@@ -44,16 +45,8 @@
   <div class="row">
     <div class="col col-lg-12">
       <div class="cr-roomlist">
-        <ul class="list-group">
-          <a href="#">
-            <li class="list-group-item">NodeJS</li>
-          </a>
-          <a href="#">
-            <li class="list-group-item">Cloud Computing</li>
-          </a>
-          <a href="#">
-            <li class="list-group-item">MongoDB</li>
-          </a>
+        <ul class="list-group roomlist">
+
         </ul>
       </div>
     </div>

@@ -2,6 +2,7 @@
   "name": "Chat app",
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "font-awesome": "fontawesome#^4.6.3"
+    "font-awesome": "fontawesome#^4.6.3",
+    "jquery": "2.0.0"
   }
 }

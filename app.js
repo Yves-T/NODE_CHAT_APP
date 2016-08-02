@@ -9,6 +9,8 @@ const mongoose = require('./config/configMongoose')();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+const rooms = [];
+
 app.engine('html', hogan);
 app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -19,6 +21,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./auth/passportAuth')(passport, GoogleStrategy, mongoose);
 
-require('./routes/routes')(app, passport);
+require('./routes/routes')(app, passport, rooms);
 
-app.listen(3000, () => console.log('Server listening on port 3000'));
+app.set('port', process.env.PORT || 3000);
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
+require('./socket/socket')(io, rooms);
+server.listen(app.get('port'), () => {
+  console.log('Server listening on port 3000');
+});
