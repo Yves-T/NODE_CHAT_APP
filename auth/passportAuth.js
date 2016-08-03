@@ -1,3 +1,5 @@
+const logger = require('../logger');
+
 module.exports = (passport, GoogleStrategy) => {
   const UserModel = require('../models/user');
 
@@ -8,6 +10,9 @@ module.exports = (passport, GoogleStrategy) => {
 // used to deserialize the user
   passport.deserializeUser((id, done) => {
     UserModel.findById(id, (err, user) => {
+      if (err) {
+        logger.error('MongoDB Error: ', err);
+      }
       done(err, user);
     });
   });
@@ -22,6 +27,7 @@ module.exports = (passport, GoogleStrategy) => {
     (token, refreshToken, profile, done) => {
       UserModel.findOne({profileID: profile.id}, (err, result) => {
         if (err) {
+          logger.error('MongoDB Error: ', err);
           return done(err);
         }
 
@@ -39,6 +45,7 @@ module.exports = (passport, GoogleStrategy) => {
 
           newChatUser.save(err => {
             if (err) {
+              logger.error('MongoDB Error: ', err);
               throw err;
             }
 
