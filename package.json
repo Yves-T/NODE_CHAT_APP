@@ -20,7 +20,7 @@
     "express-session": "^1.14.0",
     "gulp-less": "^3.1.0",
     "gulp-minify-css": "^1.2.4",
-    "hogan-express": "^0.5.2",
+    "jade": "^1.11.0",
     "mongoose": "^4.5.7",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",

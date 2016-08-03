@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const hogan = require('hogan-express');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 require('dotenv').config();
@@ -11,9 +10,8 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 const rooms = [];
 
-app.engine('html', hogan);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');
+app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 require('./config/configSession')(session, app, mongoose);

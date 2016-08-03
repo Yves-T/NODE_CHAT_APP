@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/chatRooms.js')
+
+  #chatrooms.container
+    .row
+      .col.col-lg-12
+        h1 Chat app
+
+    .row
+      .col.col-lg-12
+        .well
+          img(width="50",src="#{user.profilePic}").img-responsive.pull-left
+
+          h3.username &nbsp; #{user.fullname} &nbsp;
+
+            a(href="/logout").btn.btn-default Logout
+
+    .row
+      .col.col-lg-12
+        .input-group
+          input(type=text,autocomplete=off).form-control.newRoom
+          span.input-group-btn
+            button(type=button)#create.btn.btn-success Create Room
+
+    .row
+      .col.col-lg-12
+        .roomlist
+          ul.list-group.roomlist

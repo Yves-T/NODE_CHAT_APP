@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  script(src='/socket.io/socket.io.js')
+  script(type='text/javascript').
+    var host = location.host;
+    var messages = io.connect(host + '/messages');
+    var roomNum = '#{roomNumber}';
+    var userName = '#{user.fullname}';
+    var userPic = '#{user.profilePic}';
+  script(src='/js/room.js')
+
+  #rooms.container
+    .well
+      h1 Chat App
+
+      .row
+        .col-lg-8
+          img(src="#{user.profilePic}").img-responsive.pull-left
+          h3.userName &nbsp;#{user.fullname} &nbsp;
+            a(href="/logout").btn.btn-default Logout
+            | &nbsp;
+            a(href="/chatrooms").btn.btn-success More Chatrooms
+
+      hr
+
+      .row
+        .col-lg-8
+          .roomname
+            h3 Room name &nbsp;
+              span.label.label-primary #{roomName}
+
+      .row
+        .col-lg-6
+          .rm-messages
+            .ul.messages.list-group
+          .rm-newmessage
+            input(type=text,autocomplete=off,placeholder="Type in your message and press enter !").newmessage.form-control
+
+        .col-lg-4
+          .rm-users
+            ul.users.list-group
