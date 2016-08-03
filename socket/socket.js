@@ -22,8 +22,8 @@ module.exports = (io, rooms) => {
     });
 
     function updateUserList(room, updateAll) {
-      var userlist = [];
-      var chatRoomSockets = io.of('/messages').sockets;
+      const userlist = [];
+      const chatRoomSockets = io.of('/messages').sockets;
 
       for (prop in chatRoomSockets) {
         if (chatRoomSockets.hasOwnProperty(prop)) {
