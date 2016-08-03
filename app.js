@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const logger = require('./logger');
 require('dotenv').config();
 const mongoose = require('./config/configMongoose')();
 const passport = require('passport');
@@ -12,6 +13,13 @@ const rooms = [];
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(require('morgan')('combined', {
+  stream: {
+    write: message => {
+      logger.log('info', message);
+    }
+  }
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 require('./config/configSession')(session, app, mongoose);
