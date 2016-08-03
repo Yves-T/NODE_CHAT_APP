@@ -2,4 +2,21 @@
   .well {
     margin-top: 10px;
   }
+
+  @keyframes slideDown {
+    from {
+      max-height: 0;
+      opacity: 0;
+    }
+    to {
+      max-height: 1000px;
+      opacity: 1;
+    }
+  }
+
+  .slider {
+    animation-name: slideDown;
+    animation-duration: 1.5s;
+    word-wrap: break-word;
+  }
 }

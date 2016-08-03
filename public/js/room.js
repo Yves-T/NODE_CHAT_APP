@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     newListElement.innerHTML = template;
     var chatRoomMessages = document.querySelector('.messages');
     chatRoomMessages.insertBefore(newListElement, chatRoomMessages.firstChild);
+    newListElement.setAttribute('class', 'list-group-item slider');
   }
 
   messages.on('updateUserList', function (data) {
