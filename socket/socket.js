@@ -1,8 +1,12 @@
+const Util = require('./util');
+
 module.exports = (io, rooms) => {
   const chatrooms = io.of('/roomlist').on('connection', socket => {
     socket.emit('roomupdate', JSON.stringify(rooms));
 
     socket.on('newroom', data => {
+      data.roomNumber = Util.randomHex();
+      data.sockets = [];
       rooms.push(data);
       socket.broadcast.emit('roomupdate', JSON.stringify(rooms));
       socket.emit('roomupdate', JSON.stringify(rooms));
@@ -11,6 +15,8 @@ module.exports = (io, rooms) => {
 
   const messages = io.of('/messages').on('connection', socket => {
     socket.on('joinroom', data => {
+      const room = Util.findRoomByRoomNumber(rooms, data.room);
+      room.sockets.push(socket.id);
       socket.username = data.user;
       socket.userPic = data.userPic;
       socket.join(data.room);
@@ -43,6 +49,14 @@ module.exports = (io, rooms) => {
 
     socket.on('updateList', data => {
       updateUserList(data.room);
+    });
+
+    socket.on('disconnect', () => {
+      var room = Util.findRoomBySocketId(rooms, socket.id);
+      if (room) {
+        socket.leave(room.roomNumber);
+        updateUserList(room.roomNumber);
+      }
     });
   });
 };

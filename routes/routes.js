@@ -18,7 +18,7 @@ module.exports = (app, passport, rooms) => {
   });
 
   function findRoomById(roomId) {
-    const room = _.findWhere(rooms, {roomNumber: parseInt(roomId, 10)});
+    const room = _.findWhere(rooms, {roomNumber: roomId});
     return room.roomName;
   }
 

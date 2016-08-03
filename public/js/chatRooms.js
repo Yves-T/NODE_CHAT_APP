@@ -28,8 +28,7 @@
       var newsRoom = document.querySelector('.newRoom');
       var roomName = newsRoom.value;
       if (roomName !== '') {
-        var roomNumber = parseInt(Math.random() * 10000, 10);
-        socket.emit('newroom', {roomName: roomName, roomNumber: roomNumber});
+        socket.emit('newroom', {roomName: roomName});
         newsRoom.value = '';
       }
     });
