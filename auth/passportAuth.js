@@ -25,7 +25,7 @@ module.exports = (passport, GoogleStrategy) => {
 
   passport.use(new GoogleStrategy(googleOptions,
     (token, refreshToken, profile, done) => {
-      UserModel.findOne({profileID: profile.id}, (err, result) => {
+      UserModel.findById({profileID: profile.id}, (err, result) => {
         if (err) {
           logger.error('MongoDB Error: ', err);
           return done(err);
